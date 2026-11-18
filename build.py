@@ -134,7 +134,7 @@ def page(fn, title, desc, body):
     write(fn, html)
 
 def phead(h, p):
-    return f'<div class="phead"><div class="wrap"><div class="eyebrow" aria-hidden="true">Amrinder Jakhar</div><h1>{h}</h1><p>{p}</p></div></div>'
+    return f'<div class="phead"><div class="wrap"><h1>{h}</h1><p>{p}</p></div></div>'
 
 # ---------------------------------------------------------------- data
 XGB_REPO = "https://github.com/AmrinderJakhar98/XgBoost_2025_dsa"
@@ -347,7 +347,7 @@ page("index.html", "Home",
   <p class="lead">I am a Ph.D. candidate at the University of Georgia. I study in-season nitrogen management in corn using canopy sensors, drone and satellite imagery, and machine learning.</p>
   <ul class="tags"><li>Ph.D. candidate, Crop and Soil Sciences, UGA</li><li>Remote sensing</li><li>Machine learning</li><li>Water quality</li><li>FAA Part 107 pilot</li></ul>
   <div class="btns"><a class="btn btn-primary" href="cv.html">View CV</a><a class="btn btn-ghost" href="publications.html">Publications</a><a class="btn btn-ghost" href="contact.html">Get in touch</a></div>
-  <p class="mail"><span aria-hidden="true">&#9993;</span> <a href="mailto:{EMAIL}">{EMAIL}</a></p>
+  <p class="mail"><a href="mailto:{EMAIL}">{EMAIL}</a></p>
  </div>
  <div class="portrait"><picture><source srcset="assets/img/amrinder-jakhar.webp" type="image/webp"><img src="assets/img/amrinder-jakhar.jpg" alt="Portrait of Amrinder Jakhar" width="320" height="320" fetchpriority="high"></picture></div>
 </div></section>
@@ -391,7 +391,7 @@ PHOTOS = '<ul class="photos">' + "".join(
   ("field-corn-contrast", "Tall dark green corn beside shorter, lighter green corn in the next plot"),
   ("field-rows", "Rows of young corn in a research field under a blue sky")]) + "</ul>"
 themes = "".join(
- f'<div class="theme reveal" id="theme-{n}"><div class="num" aria-hidden="true">0{n}</div><div><div class="icon">{ICON[i]}</div><h2>{h}</h2><p>{d}</p>'
+ f'<div class="theme reveal" id="theme-{n}"><div><div class="icon">{ICON[i]}</div><h2>{h}</h2><p>{d}</p>'
  + '<ul class="pills" aria-label="Topics">' + "".join(f'<li class="pill">{t}</li>' for t in tags) + "</ul>"
  + "<ul>" + "".join(f"<li>{x}</li>" for x in pts) + "</ul></div></div>"
  for n, (i, h, d, pts, tags) in enumerate(THEMES, 1))
@@ -399,9 +399,9 @@ page("research.html", "Research", "Research by Amrinder Jakhar at the University
  phead("Research", "My Ph.D. is on nitrogen management and crop sensing in Georgia corn. My M.S. was on soil amendments and water quality.")
  + f'<section><div class="wrap">{PHOTOS}{themes}</div></section>'
  + """<section class="alt"><div class="wrap two">
- <div><div class="kicker">Where</div><h2>Field sites</h2>
+ <div><h2>Field sites</h2>
  <p>Replicated corn nitrogen trials at UGA research farms in Tifton (Ponder and Rigdon Farms), Midville and Watkinsville (Iron Horse Farm), plus on-farm trials with Georgia growers. M.S. field work in the Mississippi Delta.</p></div>
- <div><div class="kicker">Toolkit</div><h2>Equipment and methods</h2>
+ <div><h2>Equipment and methods</h2>
  <div class="chips"><span>Crop Circle ACS-435</span><span>GreenSeeker</span><span>MicaSense Altum-PT</span><span>DJI M300 RTK</span><span>Zenmuse L1 LiDAR</span><span>PlanetScope</span><span>Veris MSP3</span><span>Mixed-effects models</span><span>Meta-analysis</span><span>EONR / AONR</span><span>XGBoost</span><span>tidymodels</span><span>QGIS</span><span>Pix4D</span><span>Sapelo2 HPC</span></div></div>
 </div></section>""")
 
@@ -414,21 +414,21 @@ fbtns = '<button type="button" class="on" aria-pressed="true" data-f="all">All</
  f'<button type="button" aria-pressed="false" data-f="{k}">{t}</button>'
  for k, t in FILTERS if any(k in topic_tags(p["topics"]) for p in PUBS))
 page("publications.html", "Publications", "Publications by Amrinder Jakhar, University of Georgia, in precision agriculture, remote sensing, machine learning and water quality.",
- phead("Publications", 'Journal articles, manuscripts under review and conference papers. Also on <a href="'+LINKS["Google Scholar"]+'">Google Scholar</a> and <a href="'+LINKS["ORCID"]+'">ORCID</a>.')
+ phead("Publications", 'Everything I have published or submitted, newest first in each group. The same list is on my <a href="'+LINKS["Google Scholar"]+'">Google Scholar</a> and <a href="'+LINKS["ORCID"]+'">ORCID</a> pages.')
  + f"""<section><div class="wrap">
  <div class="filters" role="group" aria-label="Filter publications by topic">{fbtns}</div>
  <p id="pubcount" class="count" role="status" aria-live="polite"></p>
  <div class="pubs">{pubs}</div></div></section>""")
 
 page("teaching.html", "Teaching & Mentoring", "Teaching, mentoring, open-source code and outreach by Amrinder Jakhar, Ph.D. candidate in Crop and Soil Sciences at the University of Georgia.",
- phead("Teaching &amp; Mentoring", "Teaching and mentoring at the University of Georgia.")
+ phead("Teaching &amp; Mentoring", "I was a teaching assistant at the University of Georgia and have mentored graduate and high school students.")
  + f"""<section><div class="wrap two">
- <div><div class="kicker">Teaching</div><h2>CRSS 8030: Data Science and Statistical Programming Applied to Agriculture</h2>
+ <div><h2>CRSS 8030: Data Science and Statistical Programming Applied to Agriculture</h2>
  <p class="meta">Teaching Assistant &middot; University of Georgia &middot; Spring 2025</p>
  <p>I held weekly office hours and helped graduate students with R and statistical modeling. I had taken the course myself in 2024.</p>
  <p>I also taught one lecture and lab on gradient boosting with XGBoost and tidymodels. The code and recording are public.</p>
  <div class="btns"><a class="btn btn-dark" href="{XGB_REPO}">Lesson code</a><a class="btn btn-dark" href="https://www.youtube.com/watch?v=64FaToOxLLo">Watch the recording</a></div></div>
- <div><div class="kicker">Mentoring</div><h2>Students I have mentored</h2>
+ <div><h2>Students I have mentored</h2>
  <ul class="tl">
   <li><div class="when">2024 &middot; 8 months</div><h3>Visiting graduate researcher, USP / ESALQ</h3><p>Co-supervised a project on nitrogen rate effects on corn grain quality for dairy nutrition.</p></li>
   <li><div class="when">2024 &middot; Young Scholars Program</div><h3>High school student</h3><p>Using drone and satellite imagery to prescribe nitrogen fertilizer in corn.</p></li>
@@ -436,14 +436,14 @@ page("teaching.html", "Teaching & Mentoring", "Teaching, mentoring, open-source 
  </ul></div>
 </div></section>
 <section class="alt"><div class="wrap">
- <div class="kicker">Open code and decision tools</div><h2>Code and tools</h2>
+ <h2>Code and tools</h2>
  <div class="grid g3">
-  <div class="card reveal"><div class="icon">{ICON['code']}</div><h3><a href="{XGB_REPO}">XGBoost teaching module</a></h3><p>Annotated, reproducible R lesson on gradient boosting with tidymodels (2025).</p></div>
-  <div class="card reveal"><div class="icon">{ICON['ml']}</div><h3>PGRx dashboard</h3><p>Co-developer of a cotton plant growth regulator recommender; manuscript under review.</p></div>
-  <div class="card reveal"><div class="icon">{ICON['sensor']}</div><h3>Cotton variety selector</h3><p>Co-developer of a dashboard turning Georgia variety trials into variety choices (2025).</p></div>
-  <div class="card reveal"><div class="icon">{ICON['water']}</div><h3>NxS Advisor</h3><p>Nitrogen-by-sulfur decision tool built with Team Georgia, 2nd place at the NxS Hackathon, 2026 Nitrogen Use Efficiency Workshop. Prototype, not yet public.</p></div>
-  <div class="card reveal"><div class="icon">{ICON['drone']}</div><h3>Optical-sensor N algorithm library</h3><p>Reproducible R implementations of published in-season N algorithms (in progress).</p></div>
-  <div class="card reveal"><div class="icon">{ICON['people']}</div><h3>Outreach</h3><p>Field-day sensor demos for about 100 growers, consultants, students and faculty, and drone and data science sessions for school students.</p></div>
+  <div class="card reveal"><h3><a href="{XGB_REPO}">XGBoost teaching module</a></h3><p>Annotated, reproducible R lesson on gradient boosting with tidymodels (2025).</p></div>
+  <div class="card reveal"><h3>PGRx dashboard</h3><p>Co-developer of a cotton plant growth regulator recommender; manuscript under review.</p></div>
+  <div class="card reveal"><h3>Cotton variety selector</h3><p>Co-developer of a dashboard that helps choose cotton varieties from Georgia variety trial results (2025).</p></div>
+  <div class="card reveal"><h3>NxS Advisor</h3><p>Nitrogen-by-sulfur decision tool built with Team Georgia, 2nd place at the NxS Hackathon, 2026 Nitrogen Use Efficiency Workshop. Prototype, not yet public.</p></div>
+  <div class="card reveal"><h3>Optical-sensor N algorithm library</h3><p>Reproducible R implementations of published in-season N algorithms (in progress).</p></div>
+  <div class="card reveal"><h3>Outreach</h3><p>Field-day sensor demos for about 100 growers, consultants, students and faculty, and drone and data science sessions for school students.</p></div>
  </div>
 </div></section>""")
 
@@ -454,7 +454,7 @@ def rows(items):
     return "".join(f'<div class="row"><div><b>{a}</b>{"<br>"+b if b else ""}</div><div class="d">{d}</div>{SD.format(s) if s else ""}</div>' for a, b, d, s in items)
 
 page("cv.html", "CV", "Curriculum vitae of Amrinder Jakhar, Ph.D. candidate in Crop and Soil Sciences at the University of Georgia: education, research, honors, talks and skills.",
- phead("Curriculum Vitae", "Education, research experience, honors and skills.")
+ phead("Curriculum Vitae", "Ph.D. candidate in Crop and Soil Sciences at the University of Georgia.")
  + f"""<section><div class="wrap">
  {CVBTN}
  <div class="cvsec"><h2>Education</h2>{rows([
@@ -490,20 +490,20 @@ page("cv.html", "CV", "Curriculum vitae of Amrinder Jakhar, Ph.D. candidate in C
 
 def bare(u):
     return re.sub(r"^https?://(www\.)?", "", u).rstrip("/")
-contact = "".join(f'<li><div class="icon">{ICON["link"]}</div><div><b>{k}</b><br><a href="{u}" aria-label="{k}: {bare(u)}">{bare(u)}</a></div></li>' for k, u in LINKS.items())
+contact = "".join(f'<li><div><b>{k}</b><br><a href="{u}" aria-label="{k}: {bare(u)}">{bare(u)}</a></div></li>' for k, u in LINKS.items())
 page("contact.html", "Contact", "Contact Amrinder Jakhar, Ph.D. candidate in precision agriculture and data science at the University of Georgia.",
  phead("Contact", "I am looking for postdoctoral, industry and faculty positions in precision agriculture starting in 2027. Email is the best way to reach me.")
  + f"""<section><div class="wrap">
  <h2 class="sr-only">Contact details</h2>
  <ul class="contact-list">
-  <li><div class="icon">{ICON['mail']}</div><div><b>Email</b><br><a href="mailto:{EMAIL}">{EMAIL}</a></div></li>
-  <li><div class="icon">{ICON['pin']}</div><div><b>Office</b><br>Department of Crop and Soil Sciences<br>University of Georgia, Athens, GA 30602</div></li>
+  <li><div><b>Email</b><br><a href="mailto:{EMAIL}">{EMAIL}</a></div></li>
+  <li><div><b>Office</b><br>Department of Crop and Soil Sciences<br>University of Georgia, Athens, GA 30602</div></li>
   {contact}
  </ul>
 </div></section>""")
 
 page("404.html", "Page not found", "Page not found.",
- phead("Page not found", 'That address does not exist on this site. Use the menu above or go back to the <a href="/">home page</a>.'))
+ phead("Page not found", 'I could not find that page. Use the menu above or go back to the <a href="/">home page</a>.'))
 
 # GitHub Pages extras
 write("CNAME", "amrinderjakhar.com\n")
