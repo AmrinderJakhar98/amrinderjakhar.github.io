@@ -363,7 +363,7 @@ page("index.html", "Home",
  <div>
   <h2>About me</h2>
   <p>I work in Dr. Leonardo M. Bastos's lab in the Department of Crop and Soil Sciences. I defended my dissertation in October 2026 and will graduate in May 2027.</p>
-  <p>Most of my Ph.D. has been in corn fields in south and central Georgia. I compare handheld canopy sensors, drone imagery and satellite imagery for deciding how much nitrogen to side-dress, and I led a meta-analysis on sensor-based variable-rate nitrogen in maize that came out in <a href="{META_DOI}"><i>Precision Agriculture</i></a> in 2026.</p>
+  <p>Most of my Ph.D. has been in corn fields in Georgia. I compare handheld canopy sensors, drone imagery and satellite imagery for deciding how much nitrogen to side-dress, and I led a meta-analysis on sensor-based variable-rate nitrogen in maize that came out in <a href="{META_DOI}"><i>Precision Agriculture</i></a> in 2026.</p>
   <p>I also fit machine learning models, mostly gradient boosting and random forests in R, and have worked with lab mates on yield prediction for peanut and cotton. For my M.S. at Mississippi State University I studied biochar and gypsum in Delta cotton and soybean, including how they change nutrient losses in soil water.</p>
   <p>I am looking for positions in precision agriculture and agricultural data science starting in 2027.</p>
  </div>
@@ -431,8 +431,8 @@ page("teaching.html", "Teaching & Mentoring", "Teaching, mentoring, open-source 
  <div><div class="kicker">Mentoring</div><h2>Students I have mentored</h2>
  <ul class="tl">
   <li><div class="when">2024 &middot; 8 months</div><h3>Visiting graduate researcher, USP / ESALQ</h3><p>Co-supervised a project on nitrogen rate effects on corn grain quality for dairy nutrition.</p></li>
-  <li><div class="when">2024 &middot; Young Scholars Program</div><h3>Rahul Mohanty</h3><p>Using drone and satellite imagery to prescribe nitrogen fertilizer in corn.</p></li>
-  <li><div class="when">2023 &middot; Young Scholars Program</div><h3>Clayton Bivins</h3><p>Drone imagery processing and analysis; featured in a UGA CAES article.</p></li>
+  <li><div class="when">2024 &middot; Young Scholars Program</div><h3>High school student</h3><p>Using drone and satellite imagery to prescribe nitrogen fertilizer in corn.</p></li>
+  <li><div class="when">2023 &middot; Young Scholars Program</div><h3>High school student</h3><p>Drone imagery processing and analysis; featured in a UGA CAES article.</p></li>
  </ul></div>
 </div></section>
 <section class="alt"><div class="wrap">
