@@ -8,6 +8,7 @@
     n.addEventListener('focusout',function(e){if(e.relatedTarget&&!n.contains(e.relatedTarget))set(false)});
     d.addEventListener('click',function(e){if(!n.contains(e.target))set(false)});
   }
+  var y=d.getElementById('yr');if(y)y.textContent=new Date().getFullYear();
   // reveal: hide only what is below the fold, and only once this script is running
   var els=d.querySelectorAll('.reveal');
   if('IntersectionObserver' in window&&els.length){
@@ -35,6 +36,6 @@
     apply(x.dataset.f);
     try{history.replaceState(null,'',x.dataset.f==='all'?location.pathname:'#'+x.dataset.f)}catch(e){}
   })});
-  var hash=location.hash.slice(1);
-  apply(d.querySelector('.filters [data-f="'+hash.replace(/[^a-z]/g,'')+'"]')?hash:'all');
+  var k=location.hash.slice(1);
+  apply(/^[a-z]+$/.test(k)&&d.querySelector('.filters [data-f="'+k+'"]')?k:'all');
 })();

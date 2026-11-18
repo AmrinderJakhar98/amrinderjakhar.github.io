@@ -43,8 +43,10 @@ def write(name, text):
 
 # ---------------------------------------------------------------- structured data (schema.org)
 def ld(*nodes):
-    return '<script type="application/ld+json">' + json.dumps(
-        {"@context": "https://schema.org", "@graph": list(nodes)}, separators=(",", ":")) + '</script>'
+    js = json.dumps({"@context": "https://schema.org", "@graph": list(nodes)}, separators=(",", ":"))
+    # keep text from the CSV from closing the script block
+    js = js.replace("<", "\\u003c").replace(">", "\\u003e").replace("&", "\\u0026")
+    return '<script type="application/ld+json">' + js + '</script>'
 
 PERSON = {
   "@type": "Person", "@id": SITE + "/#person",
@@ -75,10 +77,11 @@ LD = {"index.html": ld(WEBSITE, {"@type": "ProfilePage", "@id": SITE + "/#profil
 
 OG_ALT = "Amrinder Jakhar, precision agriculture and data science. AJ monogram on a dark background."
 
+CUR = ' aria-current="page"'
 def page(fn, title, desc, body):
     nf = fn == "404.html"            # the 404 page is served from any path, so it needs absolute URLs
     P = "/" if nf else ""
-    menu = "".join(f'<li><a href="{"/" if nf and h == "index.html" else P + h}"{" aria-current=\"page\"" if h == fn else ""}>{t}</a></li>' for h, t in NAV)
+    menu = "".join(f'<li><a href="{"/" if nf and h == "index.html" else P + h}"{CUR if h == fn else ""}>{t}</a></li>' for h, t in NAV)
     social = " ".join(f'<a href="{u}">{k}</a>' for k, u in LINKS.items())
     full = "Amrinder Jakhar | Precision Agriculture & Data Science" if fn == "index.html" else f"{title} | Amrinder Jakhar"
     canon = SITE + ("/" if fn == "index.html" else "/" + fn)
@@ -106,7 +109,7 @@ def page(fn, title, desc, body):
 <link rel="apple-touch-icon" href="{P}assets/icons/apple-touch-icon.png">
 <meta name="theme-color" content="#0f1913">
 <link rel="stylesheet" href="{P}assets/css/style.css">
-<noscript><style>.burger{{display:none}}.nav .wrap{{height:auto;flex-wrap:wrap;padding-top:8px;padding-bottom:8px}}.menu{{display:flex;flex-wrap:wrap;position:static;padding:0}}</style></noscript>
+<noscript><style>.burger{{display:none}}.nav .wrap{{height:auto;flex-wrap:wrap;padding-top:8px;padding-bottom:8px}}.menu{{display:flex;flex-direction:row;flex-wrap:wrap;position:static;padding:0;box-shadow:none}}.menu a{{border-bottom:0;padding:8px 10px}}.nav{{position:static}}</style></noscript>
 {LD.get(fn, "")}
 </head>
 <body>
@@ -121,7 +124,7 @@ def page(fn, title, desc, body):
 {body}
 </main>
 <footer><div class="wrap">
-<span>&copy; {YEAR} Amrinder Jakhar &middot; Athens, Georgia &middot; <a href="mailto:{EMAIL}">{EMAIL}</a></span>
+<span>&copy; <span id="yr">{YEAR}</span> Amrinder Jakhar &middot; Athens, Georgia &middot; <a href="mailto:{EMAIL}">{EMAIL}</a></span>
 <nav class="social" aria-label="Profiles">{social}</nav>
 </div></footer>
 <script src="{P}assets/js/site.js" defer></script>
@@ -336,7 +339,7 @@ META_DOI = "https://doi.org/10.1007/s11119-026-10447-1"
 page("index.html", "Home",
  "Amrinder Jakhar is a Ph.D. candidate at the University of Georgia working on precision agriculture, remote sensing, machine learning and water quality.",
  f"""
-<section class="hero"><img class="bg" src="assets/img/field-plots-900.webp" srcset="assets/img/field-plots-900.webp 900w, assets/img/field-plots-1600.webp 1600w" sizes="100vw" alt="" width="1600" height="900" decoding="async">
+<section class="hero"><picture><source media="(max-width:820px)" srcset="assets/img/field-plots-tall.webp"><img class="bg" src="assets/img/field-plots-900.webp" srcset="assets/img/field-plots-900.webp 900w, assets/img/field-plots-1600.webp 1600w" sizes="100vw" alt="" width="1600" height="900" decoding="async"></picture>
 <div class="wrap">
  <div>
   <div class="eyebrow">Crop and Soil Sciences &middot; University of Georgia</div>
@@ -384,8 +387,8 @@ page("index.html", "Home",
 # field photos (720 px WebP, loaded only when scrolled to)
 PHOTOS = '<ul class="photos">' + "".join(
  f'<li><img src="assets/img/{f}.webp" alt="{a}" width="720" height="540" loading="lazy" decoding="async"></li>' for f, a in [
-  ("field-aerial", "Drone view of corn research plots surrounded by trees"),
-  ("field-corn-contrast", "Two corn plots side by side, one dark green and one pale and yellowing"),
+  ("field-aerial", "Drone view of a field divided into rows of crop plots, with trees along one side"),
+  ("field-corn-contrast", "Tall dark green corn beside shorter, lighter green corn in the next plot"),
   ("field-rows", "Rows of young corn in a research field under a blue sky")]) + "</ul>"
 themes = "".join(
  f'<div class="theme reveal" id="theme-{n}"><div class="num" aria-hidden="true">0{n}</div><div><div class="icon">{ICON[i]}</div><h2>{h}</h2><p>{d}</p>'
@@ -446,8 +449,9 @@ page("teaching.html", "Teaching & Mentoring", "Teaching, mentoring, open-source 
 
 CVBTN = '<p><a class="btn btn-dark" href="assets/Amrinder_Jakhar_CV.pdf">Download full CV (PDF)</a></p>' if (OUT / "assets/Amrinder_Jakhar_CV.pdf").exists() else ""
 
+SD = '<div class="s">{}</div>'
 def rows(items):
-    return "".join(f'<div class="row"><div><b>{a}</b>{"<br>"+b if b else ""}</div><div class="d">{d}</div>{f"<div class=\"s\">{s}</div>" if s else ""}</div>' for a, b, d, s in items)
+    return "".join(f'<div class="row"><div><b>{a}</b>{"<br>"+b if b else ""}</div><div class="d">{d}</div>{SD.format(s) if s else ""}</div>' for a, b, d, s in items)
 
 page("cv.html", "CV", "Curriculum vitae of Amrinder Jakhar, Ph.D. candidate in Crop and Soil Sciences at the University of Georgia: education, research, honors, talks and skills.",
  phead("Curriculum Vitae", "Education, research experience, honors and skills.")
