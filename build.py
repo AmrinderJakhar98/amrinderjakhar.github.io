@@ -339,7 +339,7 @@ META_DOI = "https://doi.org/10.1007/s11119-026-10447-1"
 page("index.html", "Home",
  "Amrinder Jakhar is a Ph.D. candidate at the University of Georgia working on precision agriculture, remote sensing, machine learning and water quality.",
  f"""
-<section class="hero"><picture><source media="(max-width:820px)" srcset="assets/img/field-plots-tall.webp"><img class="bg" src="assets/img/field-plots-900.webp" srcset="assets/img/field-plots-900.webp 900w, assets/img/field-plots-1600.webp 1600w" sizes="100vw" alt="" width="1600" height="900" decoding="async"></picture>
+<section class="hero"><picture><source media="(max-width:820px)" srcset="assets/img/field-whole-tall.webp"><img class="bg" src="assets/img/field-whole-900.webp" srcset="assets/img/field-whole-900.webp 900w, assets/img/field-whole-1600.webp 1600w" sizes="100vw" alt="" width="1600" height="900" decoding="async"></picture>
 <div class="wrap">
  <div>
   <div class="eyebrow">Crop and Soil Sciences &middot; University of Georgia</div>
@@ -387,7 +387,7 @@ page("index.html", "Home",
 # field photos (720 px WebP, loaded only when scrolled to)
 PHOTOS = '<ul class="photos">' + "".join(
  f'<li><img src="assets/img/{f}.webp" alt="{a}" width="720" height="540" loading="lazy" decoding="async"></li>' for f, a in [
-  ("field-aerial", "Drone view of a field divided into rows of crop plots, with trees along one side"),
+  ("field-plots", "Drone view straight down on rectangular crop plots in a research field"),
   ("field-corn-contrast", "Tall dark green corn beside shorter, lighter green corn in the next plot"),
   ("field-rows", "Rows of young corn in a research field under a blue sky")]) + "</ul>"
 themes = "".join(
