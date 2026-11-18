@@ -125,64 +125,90 @@ THEMES = [
   ["Biochar", "Gypsum", "Nutrient leaching", "Mississippi Delta"]),
 ]
 
-# (year, type, tags, title, authors, venue, link, badge)
-PUBS = [
- (2026,"journal","sensing nitrogen meta","In-season optical sensor-based variable-rate nitrogen management in maize production: a meta-analysis",
-  "<b>Jakhar, A.</b>, Scarpin, G. J., Lacerda, L. N., Ortiz, B. V., Cabrera, M. L., Vellidis, G., &amp; Bastos, L. M.",
-  "Precision Agriculture, 27(5), 137","https://doi.org/10.1007/s11119-026-10447-1","First author"),
- (2026,"journal","ml sensing","Peanut yield and grade prediction in Georgia, USA: integrating management, climate, and remote sensing data with explainable AI",
-  "Scarpin, G. J., Studstill, S. B., Monfort, W. S., Tubbs, R. S., Pilon, C., <b>Jakhar, A.</b>, Bhattarai, A., Dhaliwal, A. K., &amp; Bastos, L. M.",
-  "Computers and Electronics in Agriculture, 241, 111270","",""),
- (2026,"journal","water","Biochar and gypsum effects on soil properties and soil solution under soybean production systems",
-  "Sharma, R., <b>Jakhar, A.</b>, Singh, G., Dhillon, J., Nelson, K., Chinthalapudi, D., &amp; Kaur, G.",
-  "Agrosystems, Geosciences &amp; Environment","",""),
- (2025,"journal","sensing","Optimizing unmanned aerial vehicle LiDAR data collection in cotton through flight settings and data processing",
-  "Bhattarai, A., Scarpin, G. J., <b>Jakhar, A.</b>, Porter, W., Hand, L. C., Snider, J. L., &amp; Bastos, L. M.",
-  "Remote Sensing, 17(9), 1504","https://doi.org/10.3390/rs17091504",""),
- (2025,"journal","water","Biochar impact on soil properties and soil solution nutrient concentrations under cotton production",
-  "Sharma, R. K., Singh, G., <b>Jakhar, A.</b>, Dhillon, J., Anapalli, S. S., Nelson, K. A., &amp; Kaur, G.",
-  "Journal of Environmental Management, 386, 125660","",""),
- (2026,"review","sensing nitrogen","Canopy cover and soil background explain differences among proximal, UAV, and satellite sensor platforms in sensor-based in-season nitrogen recommendations for irrigated maize",
-  "<b>Jakhar, A.</b>, Scarpin, G. J., Lacerda, L. N., Ortiz, B. V., Cabrera, M. L., Vellidis, G., &amp; Bastos, L. M.",
-  "Remote Sensing (in revision)","","First author"),
- (2026,"review","nitrogen sensing","Grain yield and partial profit of irrigated maize under different pre-plant nitrogen rates and sensor-based variable rate side-dress nitrogen management",
-  "<b>Jakhar, A.</b>, Lacerda, L. N., Ortiz, B. V., Cabrera, M. L., Vellidis, G., Roth, R. T., Virk, S., &amp; Bastos, L. M.",
-  "Field Crops Research (submitted)","","First author"),
- (2026,"review","tools","PGRx: a cotton plant growth regulator recommender dashboard",
-  "Bastos, L. M., Scarpin, G. J., Bhattarai, A., <b>Jakhar, A.</b>, Mizero, P., Zolin, P. R., Deponti, L. P., Snider, J., Landivar, J., &amp; Echer, F. R.",
-  "Journal of Cotton Research (under review)","",""),
- (2026,"proc","ml","Comparison of machine learning models for within-field cotton yield prediction: assessing the value of temporal data and generalizability",
-  "Scarpin, G. J., Fuhrer, L., Porter, W., Dhaliwal, A. K., Bhattarai, A., <b>Jakhar, A.</b>, &amp; Bastos, L. M.",
-  "Proc. 17th International Conference on Precision Agriculture &amp; 11th ConBAP","",""),
- (2025,"proc","sensing ml","Predicting cotton lint yield using multispectral and LiDAR data",
-  "Bhattarai, A., Scarpin, G. J., <b>Jakhar, A.</b>, Dhaliwal, A., Poudel, K., Bastos, L. M., Hand, C., Snider, J., &amp; Porter, W.",
-  "Proc. 2025 Beltwide Cotton Conferences","",""),
- (2025,"proc","sensing","Evaluating LiDAR performance to measure cotton height in different varieties and growth stages",
-  "Scarpin, G. J., Bhattarai, A., <b>Jakhar, A.</b>, Dhaliwal, A., Bastos, L. M., &amp; Hand, C.",
-  "Proc. 2025 Beltwide Cotton Conferences","",""),
- (2025,"proc","tools","Dashboard tool for cotton variety selection in Georgia based on variety trial results",
-  "Scarpin, G. J., Bhattarai, A., <b>Jakhar, A.</b>, Dhaliwal, A., Bastos, L. M., &amp; Hand, C.",
-  "Proc. 2025 Beltwide Cotton Conferences","",""),
- (2024,"proc","sensing nitrogen","Proximal, drone, and satellite sensors for in-season variable nitrogen rate application in corn: a comparative study of fixed-rate and sensor-based approaches",
-  "<b>Jakhar, A.</b>, Bhattarai, A., Scarpin, G., &amp; Bastos, L. M.",
-  "Proc. 16th International Conference on Precision Agriculture","","First author"),
- (2024,"proc","sensing nitrogen","Comparing proximal and remote sensors for variable rate nitrogen management in cotton",
-  "Bhattarai, A., <b>Jakhar, A.</b>, Scarpin, G., &amp; Bastos, L. M.",
-  "Proc. 16th International Conference on Precision Agriculture","",""),
- (2024,"proc","teaching","Fostering student engagement and leadership development in integrative precision agriculture across borders",
-  "Lacerda, L. N., Dos Santos, A. F., Bedwell, E., <b>Jakhar, A.</b>, Barboza, T. O. C., &amp; Ardigueri, M.",
-  "Proc. 16th International Conference on Precision Agriculture","",""),
- (2021,"ext","water","Water quality evaluations of biochar in cotton production systems in the Mississippi Delta",
-  "<b>Jakhar, A.</b>, Kaur, G., Singh, G., &amp; Anapalli, S.",
-  "NCAAR 2021 Annual Report, p. 71. MAFES Information Bulletin 1239","","First author"),
-]
+# ---------------------------------------------------------------- publications
+# Publications live in publications.csv (edit that file, not this one).
+# Columns: doi, type, year, title, authors, journal, topics, note
+#   type   = journal | review | proc | ext   (blank = journal)
+#   topics = any of, separated by ";": nitrogen; remote sensing; machine learning; soil and water; decision tools
+# A row with only a DOI is enough: a missing title, authors, journal or year is filled
+# from Crossref when the site is rebuilt, and written back into publications.csv.
+import csv, re, html as _html, urllib.request, urllib.parse
+PUB_CSV = pathlib.Path(__file__).with_name("publications.csv")
+FIELDS = ["doi", "type", "year", "title", "authors", "journal", "topics", "note"]
+TOPIC_KEYS = {"nitrogen": "nitrogen", "remote sensing": "sensing", "machine learning": "ml",
+              "soil and water": "water", "decision tools": "tools"}
+ME = "Jakhar"
 
-def pub_html(p):
-    y, _, tags, t, a, v, link, badge = p
-    b = f'<span class="badge">{badge}</span>' if badge else ""
-    l = f'<div class="links"><a href="{link}">DOI</a></div>' if link else ""
-    return (f'<div class="pub" data-tags="{tags}"><div class="yr">{y}</div><div>'
-            f'<div class="t">{t}{b}</div><div class="a">{a}</div><div class="v">{v}</div>{l}</div></div>')
+def clean_doi(d):
+    d = (d or "").strip()
+    for p in ("https://doi.org/", "http://doi.org/", "https://dx.doi.org/", "doi:"):
+        if d.lower().startswith(p):
+            d = d[len(p):]
+    return d.strip()
+
+def crossref(doi):
+    """Metadata for a DOI from Crossref, or {} when offline or unknown."""
+    try:
+        req = urllib.request.Request("https://api.crossref.org/works/" + urllib.parse.quote(doi),
+                                     headers={"User-Agent": "academic-website-builder/1.0"})
+        m = json.load(urllib.request.urlopen(req, timeout=20))["message"]
+    except Exception as e:
+        print("  Crossref lookup failed for", doi, "-", e)
+        return {}
+    def initials(g):
+        return " ".join(p[0] + "." for p in g.replace("-", " ").split() if p)
+    auth = [f"{a.get('family', '')}, {initials(a.get('given', ''))}".strip(", ") for a in m.get("author", [])]
+    authors = (", ".join(auth[:-1]) + ", & " + auth[-1]) if len(auth) > 2 else " & ".join(auth)
+    bits = [(m.get("container-title") or [""])[0]]
+    if m.get("volume"):
+        bits.append(m["volume"] + (f"({m['issue']})" if m.get("issue") else ""))
+    if m.get("article-number") or m.get("page"):
+        bits.append(m.get("article-number") or m.get("page"))
+    year = ""
+    for k in ("published-print", "published-online", "issued"):
+        dp = (m.get(k) or {}).get("date-parts")
+        if dp and dp[0] and dp[0][0]:
+            year = str(dp[0][0]); break
+    return {"title": _html.unescape(re.sub(r"<[^>]+>", "", (m.get("title") or [""])[0])),
+            "authors": authors, "journal": ", ".join(b for b in bits if b), "year": year}
+
+def load_pubs():
+    rows = list(csv.DictReader(PUB_CSV.open(newline="", encoding="utf-8-sig")))
+    changed = False
+    for r in rows:
+        for f in FIELDS:
+            r[f] = (r.get(f) or "").strip()
+        if r["doi"] != clean_doi(r["doi"]):
+            r["doi"] = clean_doi(r["doi"]); changed = True
+        if r["doi"] and not all(r[f] for f in ("title", "authors", "journal", "year")):
+            for f, v in crossref(r["doi"]).items():
+                if v and not r[f]:
+                    r[f] = v; changed = True
+    if changed:
+        with PUB_CSV.open("w", newline="", encoding="utf-8") as fh:
+            w = csv.DictWriter(fh, fieldnames=FIELDS)
+            w.writeheader()
+            w.writerows({f: r[f] for f in FIELDS} for r in rows)
+        print("publications.csv updated")
+    rows = [r for r in rows if r["title"]]
+    rows.sort(key=lambda r: r["year"] or "9999", reverse=True)
+    return rows
+
+PUBS = load_pubs()
+
+def kind(r):
+    return (r["type"] or "journal").lower()
+
+def pub_html(r):
+    esc = _html.escape
+    tags = " ".join(TOPIC_KEYS.get(t.strip().lower(), "") for t in r["topics"].split(";"))
+    note = r["note"] or ("First author" if r["authors"].startswith(ME) else "")
+    b = f'<span class="badge">{esc(note)}</span>' if note else ""
+    authors = re.sub(r"(" + ME + r", [A-Z]\.(?: ?[A-Z]\.)*)", r"<b>\1</b>", esc(r["authors"]))
+    l = f'<div class="links"><a href="https://doi.org/{esc(r["doi"])}">DOI</a></div>' if r["doi"] else ""
+    return (f'<div class="pub" data-tags="{tags}"><div class="yr">{esc(r["year"])}</div><div>'
+            f'<div class="t">{esc(r["title"])}{b}</div><div class="a">{authors}</div>'
+            f'<div class="v">{esc(r["journal"])}</div>{l}</div></div>')
 
 NEWS = [
  ("Nov 2026", "Presented an oral talk and a poster at CANVAS 2026 in Portland, OR."),
@@ -196,7 +222,7 @@ NEWS = [
 # ---------------------------------------------------------------- pages
 cards = "".join(f'<div class="card reveal"><div class="icon">{ICON[i]}</div><h3>{h}</h3><p>{d}</p></div>' for i, h, d, _, _ in THEMES)
 news = "".join(f'<li><time>{d}</time><span>{t}</span></li>' for d, t in NEWS)
-sel = "".join(pub_html(p) for p in PUBS if p[1] == "journal")
+sel = "".join(pub_html(p) for p in PUBS if kind(p) == "journal")
 
 page("index.html", "Home",
  "Amrinder Jakhar is an agronomist and applied data scientist working on precision agriculture, remote sensing, machine learning and water quality.",
@@ -214,7 +240,7 @@ page("index.html", "Home",
 </div></section>
 
 <div class="wrap"><div class="stats">
- <div class="stat reveal"><b>5</b><span>peer-reviewed articles</span></div>
+ <div class="stat reveal"><b>{sum(kind(p) == "journal" for p in PUBS)}</b><span>peer-reviewed articles</span></div>
  <div class="stat reveal"><b>6</b><span>site-years of corn N trials</span></div>
  <div class="stat reveal"><b>3</b><span>sensing platforms compared</span></div>
  <div class="stat reveal"><b>12+</b><span>research &amp; hackathon awards</span></div>
@@ -262,7 +288,7 @@ page("research.html", "Research", "Research by Amrinder Jakhar on sensor-based n
 </div></section>""")
 
 groups = [("journal","Peer-reviewed journal articles"),("review","Submitted and under review"),("proc","Conference proceedings"),("ext","Extension and outreach")]
-pubs = "".join(f'<h2>{g}</h2>' + "".join(pub_html(p) for p in PUBS if p[1] == k) for k, g in groups)
+pubs = "".join(f'<h2>{g}</h2>' + "".join(pub_html(p) for p in PUBS if kind(p) == k) for k, g in groups)
 page("publications.html", "Publications", "Publications by Amrinder Jakhar in precision agriculture, remote sensing, machine learning and water quality.",
  phead("Publications", 'Journal articles, manuscripts under review and conference papers. Also on <a style="color:#8fc06b" href="'+LINKS["Google Scholar"]+'">Google Scholar</a> and <a style="color:#8fc06b" href="'+LINKS["ORCID"]+'">ORCID</a>.')
  + f"""<section><div class="wrap">

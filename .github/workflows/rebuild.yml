@@ -1,0 +1,36 @@
+name: Rebuild site
+
+# Runs when publications.csv or build.py changes (for example after you add a
+# paper on github.com). Fills missing paper details from Crossref, regenerates
+# the HTML pages and commits them, then GitHub Pages publishes the result.
+on:
+  push:
+    branches: [main]
+    paths: ["publications.csv", "build.py"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: rebuild
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Build pages
+        run: python build.py .
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then echo "Nothing changed"; exit 0; fi
+          git commit -m "Rebuild pages from publications.csv"
+          git push
