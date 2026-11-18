@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://amrinderjakhar.com/sitemap.xml
