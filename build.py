@@ -301,7 +301,7 @@ CVBTN = '<p><a class="btn btn-dark" href="assets/Amrinder_Jakhar_CV.pdf">Downloa
 def rows(items):
     return "".join(f'<div class="row"><div><b>{a}</b>{"<br>"+b if b else ""}</div><div class="d">{d}</div>{f"<div class=s>{s}</div>" if s else ""}</div>' for a, b, d, s in items)
 
-page("cv.html", "CV", "Curriculum vitae of Amrinder Jakhar.",
+page("cv.html", "CV", "Curriculum vitae of Amrinder Jakhar, agronomist and agricultural data scientist: education, research, honors, talks and skills.",
  phead("Curriculum Vitae", "Education, research experience, honors and skills.")
  + f"""<section><div class="wrap">
  {CVBTN}
@@ -333,7 +333,7 @@ page("cv.html", "CV", "Curriculum vitae of Amrinder Jakhar.",
 </div></section>""")
 
 contact = "".join(f'<li><div class="icon">{ICON["link"]}</div><div><b>{k}</b><br><a href="{u}">{u if u != "#" else "add link"}</a></div></li>' for k, u in LINKS.items())
-page("contact.html", "Contact", "Contact Amrinder Jakhar.",
+page("contact.html", "Contact", "Contact Amrinder Jakhar, Ph.D. candidate in precision agriculture and data science at the University of Georgia.",
  phead("Contact", "I am open to research, data science and faculty positions in precision agriculture. I would love to hear from you.")
  + f"""<section><div class="wrap two">
  <div><ul class="contact-list">
