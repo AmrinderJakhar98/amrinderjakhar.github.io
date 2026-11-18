@@ -339,7 +339,7 @@ META_DOI = "https://doi.org/10.1007/s11119-026-10447-1"
 page("index.html", "Home",
  "Amrinder Jakhar is a Ph.D. candidate at the University of Georgia working on precision agriculture, remote sensing, machine learning and water quality.",
  f"""
-<section class="hero"><picture><source media="(max-width:820px)" srcset="assets/img/field-whole-tall.webp"><img class="bg" src="assets/img/field-whole-900.webp" srcset="assets/img/field-whole-900.webp 900w, assets/img/field-whole-1600.webp 1600w" sizes="100vw" alt="" width="1600" height="900" decoding="async"></picture>
+<section class="hero"><picture><source media="(max-width:820px)" srcset="assets/img/field-whole-phone.webp"><img class="bg" src="assets/img/field-whole-900.webp" srcset="assets/img/field-whole-900.webp 900w, assets/img/field-whole-1600.webp 1600w" sizes="100vw" alt="" width="1600" height="900" decoding="async"></picture>
 <div class="wrap">
  <div>
   <div class="eyebrow">Crop and Soil Sciences &middot; University of Georgia</div>
