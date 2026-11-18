@@ -96,28 +96,28 @@ def phead(h, p):
 # ---------------------------------------------------------------- data
 THEMES = [
  ("sensor", "Sensor-based nitrogen management",
-  "In-season, variable-rate nitrogen for corn: when to apply, how much, and which sensor to trust.",
+  "Using canopy sensors to set side-dress nitrogen rates in irrigated corn.",
   ["Six site-years of irrigated corn trials across Georgia (Tifton, Midville, Watkinsville)",
    "Side-dress timing, at-planting rate and sensor prescriptions against uniform-rate controls",
    "Agronomic and economic optimum N rates, nitrogen use efficiency and partial profit",
    "Global meta-analysis: 235 paired comparisons from 25 studies in nine countries"],
   ["Corn", "Nitrogen", "On-farm trials", "Meta-analysis"]),
- ("drone", "Remote sensing across platforms",
+ ("drone", "Remote sensing",
   "Comparing proximal canopy sensors, UAV multispectral and satellite imagery over the same plots.",
   ["Proximal active sensors (Crop Circle, GreenSeeker), MicaSense UAV multispectral, PlanetScope",
    "Canopy cover and soil background explain why platforms disagree",
    "Vegetation-index and normalization choices for in-season N prescriptions",
    "UAV LiDAR in cotton: flight settings, plant height and yield prediction"],
   ["UAV", "Satellite", "LiDAR", "Vegetation indices"]),
- ("ml", "Machine learning & explainable AI",
-  "Predictive models from crop, soil, weather and sensor data that are tested against field outcomes.",
+ ("ml", "Machine learning",
+  "Yield prediction and image models built from field, weather and sensor data.",
   ["Gradient boosting (XGBoost) and random forests with tidymodels resampling and tuning",
    "Explainable AI for peanut yield and grade prediction (Computers and Electronics in Agriculture, 2026)",
    "Within-field cotton yield prediction and model generalizability",
    "Random forest / XGBoost soil-pixel removal from UAV imagery; YOLO kernel counting"],
   ["XGBoost", "Random forest", "XAI", "R & Python"]),
- ("water", "Soil health & water quality",
-  "My M.S. work at Mississippi State: how soil amendments change soil physics and nutrient losses to water.",
+ ("water", "Soil and water quality",
+  "My M.S. work on biochar and gypsum and on nutrient losses in Mississippi Delta soils.",
   ["Sugarcane biochar and FGD gypsum in rainfed Mississippi Delta cotton and soybean",
    "Soil solution sampled with suction-cup lysimeters at two depths to track nutrient movement",
    "Nutrients by ion chromatography, Lachat flow injection and ICP-OES",
@@ -212,7 +212,7 @@ def pub_html(r):
 
 NEWS = [
  ("Nov 2026", "Presented an oral talk and a poster at CANVAS 2026 in Portland, OR."),
- ("Oct 2026", "Successfully defended my Ph.D. dissertation at the University of Georgia."),
+ ("Oct 2026", "Defended my Ph.D. dissertation at the University of Georgia."),
  ("Aug 2026", "2nd place, NxS Hackathon, and 3rd place poster at the Nitrogen Use Efficiency Workshop."),
  ("Jul 2026", "Invited speaker, Brazil-Global Digital Agriculture Workshop, UNESP Jaboticabal."),
  ("2026", "Meta-analysis on sensor-based variable-rate nitrogen published in <i>Precision Agriculture</i>."),
@@ -229,9 +229,9 @@ page("index.html", "Home",
  f"""
 <section class="hero"><div class="wrap">
  <div>
-  <div class="eyebrow">Precision agriculture &middot; Remote sensing &middot; Data science</div>
+  <div class="eyebrow">Crop and Soil Sciences &middot; University of Georgia</div>
   <h1>Amrinder Jakhar</h1>
-  <p class="lead">Agronomist and applied data scientist. I build and test predictive models from crop, soil and sensor data, from the plot to the satellite, so farmers can make better nitrogen and water decisions.</p>
+  <p class="lead">I am a Ph.D. candidate at the University of Georgia. I study in-season nitrogen management in corn using canopy sensors, drone and satellite imagery, and machine learning.</p>
   <ul class="tags"><li>Ph.D. Crop &amp; Soil Sciences, UGA</li><li>Remote sensing</li><li>Machine learning</li><li>Water quality</li><li>FAA Part 107 pilot</li></ul>
   <div class="btns"><a class="btn btn-primary" href="cv.html">View CV</a><a class="btn btn-ghost" href="publications.html">Publications</a><a class="btn btn-ghost" href="contact.html">Get in touch</a></div>
   <p style="margin:18px 0 0;color:#c8d6cc">&#9993; <a style="color:#8fc06b" href="mailto:{EMAIL}">{EMAIL}</a></p>
@@ -248,26 +248,25 @@ page("index.html", "Home",
 
 <section><div class="wrap two">
  <div>
-  <div class="kicker">About</div>
-  <h2>From field plots to models</h2>
-  <p>I am a Ph.D. candidate in Crop and Soil Sciences at the University of Georgia, advised by Dr. Leonardo M. Bastos, and I defended my dissertation in October 2026. My work compares proximal, UAV and satellite sensing for in-season nitrogen recommendations in irrigated corn, and I led a global meta-analysis of sensor-based variable-rate nitrogen in maize.</p>
-  <p>Before UGA, my M.S. at Mississippi State University focused on soil health and water quality: how biochar and gypsum change soil properties and nutrient losses in Mississippi Delta cotton and soybean.</p>
-  <p>I fit machine learning models (gradient boosting, random forests, explainable AI), work mainly in R with Python, and share my analysis code openly. My goal is to build AI tools for soil and crop decisions and test them against field data.</p>
+    <h2>About me</h2>
+  <p>I work in Dr. Leonardo M. Bastos's lab in the Department of Crop and Soil Sciences. I defended my dissertation in October 2026 and will graduate in May 2027.</p>
+  <p>Most of my Ph.D. has been in corn fields in south and central Georgia. I compare handheld canopy sensors, drone imagery and satellite imagery for deciding how much nitrogen to side-dress, and I led a meta-analysis on sensor-based variable-rate nitrogen in maize that came out in <i>Precision Agriculture</i> this year.</p>
+  <p>I also fit machine learning models, mostly gradient boosting and random forests in R, and have worked with lab mates on yield prediction for peanut and cotton. For my M.S. at Mississippi State University I studied biochar and gypsum in Delta cotton and soybean, including how they change nutrient losses in soil water.</p>
+  <p>I am looking for positions in precision agriculture and agricultural data science starting in 2027.</p>
  </div>
  <div>
-  <div class="kicker">News</div>
-  <h2>Recent</h2>
+    <h2>News</h2>
   <ul class="news">{news}</ul>
  </div>
 </div></section>
 
 <section class="alt"><div class="wrap">
- <div class="sec-head"><div><div class="kicker">Research</div><h2>What I work on</h2></div><a href="research.html">All research &rarr;</a></div>
+ <div class="sec-head"><div><h2>Research</h2></div><a href="research.html">All research &rarr;</a></div>
  <div class="grid g4">{cards}</div>
 </div></section>
 
 <section><div class="wrap">
- <div class="sec-head"><div><div class="kicker">Publications</div><h2>Peer-reviewed articles</h2></div><a href="publications.html">Full list &rarr;</a></div>
+ <div class="sec-head"><div><h2>Peer-reviewed articles</h2></div><a href="publications.html">Full list &rarr;</a></div>
  <div class="pubs">{sel}</div>
 </div></section>
 """)
@@ -278,12 +277,12 @@ themes = "".join(
  + "<ul>" + "".join(f"<li>{x}</li>" for x in pts) + "</ul></div></div>"
  for n, (i, h, d, pts, tags) in enumerate(THEMES, 1))
 page("research.html", "Research", "Research by Amrinder Jakhar on sensor-based nitrogen, remote sensing, machine learning and water quality.",
- phead("Research", "Four connected threads: deciding nitrogen in season, sensing crops from three heights, learning from data, and protecting soil and water.")
+ phead("Research", "My Ph.D. is on nitrogen management and crop sensing in Georgia corn. My M.S. was on soil amendments and water quality.")
  + f'<section><div class="wrap">{themes}</div></section>'
  + """<section class="alt"><div class="wrap two">
- <div><div class="kicker">Field sites</div><h2>Where the data come from</h2>
+ <div><div class="kicker">Field sites</div><h2>Field sites</h2>
  <p>Replicated corn nitrogen trials at UGA research farms in Tifton (Ponder and Rigdon Farms), Midville and Watkinsville (Iron Horse Farm), plus on-farm trials with Georgia growers. M.S. field work in the Mississippi Delta.</p></div>
- <div><div class="kicker">Toolkit</div><h2>Sensors &amp; methods</h2>
+ <div><div class="kicker">Toolkit</div><h2>Equipment and methods</h2>
  <div class="chips"><span>Crop Circle ACS-435</span><span>GreenSeeker</span><span>MicaSense Altum-PT</span><span>DJI M300 RTK</span><span>Zenmuse L1 LiDAR</span><span>PlanetScope</span><span>Veris MSP3</span><span>Mixed-effects models</span><span>Meta-analysis</span><span>EONR / AONR</span><span>XGBoost</span><span>tidymodels</span><span>QGIS</span><span>Pix4D</span><span>Sapelo2 HPC</span></div></div>
 </div></section>""")
 
@@ -296,12 +295,12 @@ page("publications.html", "Publications", "Publications by Amrinder Jakhar in pr
  <div class="pubs">{pubs}</div></div></section>""")
 
 page("teaching.html", "Teaching & Mentoring", "Teaching, mentoring, open-source code and outreach by Amrinder Jakhar.",
- phead("Teaching &amp; Mentoring", "Teaching data science to agronomists, mentoring students, and sharing code and tools openly.")
+ phead("Teaching &amp; Mentoring", "Teaching and mentoring at the University of Georgia.")
  + f"""<section><div class="wrap two">
  <div><div class="kicker">Teaching</div><h2>CRSS 8030: Data Science &amp; Statistical Programming Applied to Agriculture</h2>
  <p class="when" style="color:var(--muted)">Teaching Assistant &middot; University of Georgia &middot; Spring 2025</p>
- <p>Held weekly office hours and helped graduate students with R, statistical modeling and applied agricultural data analysis. I took the same course as a student in 2024 and came back to teach it.</p>
- <p>I designed and taught an open lecture and lab on gradient-boosted machine learning with XGBoost and tidymodels in R.</p>
+ <p>I held weekly office hours and helped graduate students with R and statistical modeling. I had taken the course myself in 2024.</p>
+ <p>I also taught one lecture and lab on gradient boosting with XGBoost and tidymodels. The code and recording are public.</p>
  <div class="btns"><a class="btn btn-dark" href="https://github.com/AmrinderJakhar98/XgBoost_2025_dsa">Lesson code</a><a class="btn btn-dark" href="https://www.youtube.com/watch?v=64FaToOxLLo">Watch the recording</a></div></div>
  <div><div class="kicker">Mentoring</div><h2>Students I have mentored</h2>
  <ul class="tl">
@@ -311,7 +310,7 @@ page("teaching.html", "Teaching & Mentoring", "Teaching, mentoring, open-source 
  </ul></div>
 </div></section>
 <section class="alt"><div class="wrap">
- <div class="kicker">Open code &amp; decision tools</div><h2>Things I have built</h2>
+ <div class="kicker">Open code &amp; decision tools</div><h2>Code and tools</h2>
  <div class="grid g3">
   <div class="card reveal"><div class="icon">{ICON['code']}</div><h3>XGBoost teaching module</h3><p>Annotated, reproducible R lesson on gradient boosting with tidymodels (2025).</p></div>
   <div class="card reveal"><div class="icon">{ICON['ml']}</div><h3>PGRx dashboard</h3><p>Co-developer of a cotton plant growth regulator recommender; manuscript under review.</p></div>
@@ -360,14 +359,13 @@ page("cv.html", "CV", "Curriculum vitae of Amrinder Jakhar, agronomist and agric
 
 contact = "".join(f'<li><div class="icon">{ICON["link"]}</div><div><b>{k}</b><br><a href="{u}">{u if u != "#" else "add link"}</a></div></li>' for k, u in LINKS.items())
 page("contact.html", "Contact", "Contact Amrinder Jakhar, Ph.D. candidate in precision agriculture and data science at the University of Georgia.",
- phead("Contact", "I am open to research, data science and faculty positions in precision agriculture. I would love to hear from you.")
+ phead("Contact", "I am looking for postdoctoral, industry and faculty positions in precision agriculture starting in 2027. Email is the best way to reach me.")
  + f"""<section><div class="wrap two">
  <div><ul class="contact-list">
   <li><div class="icon">{ICON['mail']}</div><div><b>Email</b><br><a href="mailto:{EMAIL}">{EMAIL}</a></div></li>
   <li><div class="icon">{ICON['pin']}</div><div><b>Office</b><br>Department of Crop and Soil Sciences<br>University of Georgia, Athens, GA 30602</div></li>
   {contact}
  </ul></div>
- <div class="card"><div class="kicker">Quick facts</div><h3>Looking for</h3><p>Postdoctoral, industry data science and tenure-track roles in precision agriculture, remote sensing and agricultural data science, starting 2027.</p></div>
 </div></section>""")
 
 # GitHub Pages extras
