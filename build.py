@@ -31,10 +31,26 @@ ICON = {  # small inline line icons
 NAV = [("index.html", "Home"), ("research.html", "Research"), ("publications.html", "Publications"),
        ("teaching.html", "Teaching"), ("cv.html", "CV"), ("contact.html", "Contact")]
 
+import json
+JSONLD = '<script type="application/ld+json">' + json.dumps({
+  "@context": "https://schema.org", "@type": "Person",
+  "name": "Amrinder Jakhar",
+  "url": SITE + "/", "image": SITE + "/assets/img/amrinder-jakhar.jpg",
+  "email": "mailto:" + EMAIL,
+  "jobTitle": "Ph.D. Candidate, Crop and Soil Sciences",
+  "description": "Agronomist and applied data scientist working on precision agriculture, remote sensing, machine learning and water quality.",
+  "affiliation": {"@type": "CollegeOrUniversity", "name": "University of Georgia", "url": "https://www.uga.edu"},
+  "alumniOf": [{"@type": "CollegeOrUniversity", "name": "Mississippi State University"},
+               {"@type": "CollegeOrUniversity", "name": "Punjab Agricultural University"}],
+  "knowsAbout": ["Precision agriculture", "Remote sensing", "Machine learning", "Nitrogen management", "Water quality", "Agricultural data science"],
+  "sameAs": [u for k, u in LINKS.items() if u.startswith("http")],
+  "address": {"@type": "PostalAddress", "addressLocality": "Athens", "addressRegion": "GA", "addressCountry": "US"},
+}, separators=(",", ":")) + '</script>'
+
 def page(fn, title, desc, body):
     menu = "".join(f'<li><a href="{h}"{" aria-current=page" if h == fn else ""}>{t}</a></li>' for h, t in NAV)
     social = " ".join(f'<a href="{u}">{k}</a>' for k, u in LINKS.items())
-    full = "Amrinder Jakhar" if fn == "index.html" else f"{title} | Amrinder Jakhar"
+    full = "Amrinder Jakhar | Precision Agriculture & Data Science" if fn == "index.html" else f"{title} | Amrinder Jakhar"
     canon = SITE + ("/" if fn == "index.html" else "/" + fn)
     html = f"""<!doctype html>
 <html lang="en">
@@ -52,6 +68,7 @@ def page(fn, title, desc, body):
 <meta name="theme-color" content="#0f1913">
 <script>document.documentElement.className="js"</script>
 <link rel="stylesheet" href="assets/css/style.css">
+{JSONLD if fn == "index.html" else ""}
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
