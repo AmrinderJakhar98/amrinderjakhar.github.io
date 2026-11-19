@@ -495,7 +495,6 @@ GAL = [
  ]),
  ("sensing", "Drones and sensing", "Multispectral drone flights, RTK positioning, soil mapping and in-cab variable-rate application.", [
   ("about-drone-corn","Flying a research drone beside a tall corn field","Flying the drone in corn"),
-  ("home-holding-drone","Holding a multispectral drone in a field","Ready for a flight"),
   ("res-drone-gnss-base","Drone in flight over young corn with a GNSS base station on a tripod","Drone flight with an RTK base station"),
   ("res-drone-overhead","Drone hovering above an operator holding a controller","Drone imagery collection"),
   ("home-drone-base-station","Drone flying over a field next to a ground station","Drone over the field station"),
@@ -503,7 +502,6 @@ GAL = [
   ("res-in-cab","Precision guidance displays inside a tractor cab in a corn field","In-cab displays during application"),
  ]),
  ("talks", "Talks and awards", "Conference talks and posters on sensor-based nitrogen management.", [
-  ("talk-smart-fert","Giving a talk titled Smart Fertilization: Leveraging Sensor Technology for Sustainable Corn Production","Talk on sensor-based nitrogen"),
   ("talk-brazil","Presenting on variable-rate nitrogen at a conference in Brazil","Talk at a precision agriculture meeting in Brazil"),
   ("talk-iipa","Standing beside an Institute for Integrative Precision Agriculture banner","Institute for Integrative Precision Agriculture"),
  ]),
