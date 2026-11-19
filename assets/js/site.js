@@ -22,10 +22,10 @@
   var lbs=[].slice.call(d.querySelectorAll('a.lb'));
   if(lbs.length&&window.HTMLDialogElement){
     var dl=d.createElement('dialog');dl.className='lightbox';dl.setAttribute('aria-label','Photo viewer');
-    dl.innerHTML='<button type="button" class="lb-x" aria-label="Close">&times;</button><button type="button" class="lb-p" aria-label="Previous photo">&#8249;</button><figure><img alt=""><figcaption></figcaption></figure><button type="button" class="lb-n" aria-label="Next photo">&#8250;</button>';
+    dl.innerHTML='<button type="button" class="lb-x" aria-label="Close">&times;</button><button type="button" class="lb-p" aria-label="Previous photo">&#8249;</button><figure><img alt=""></figure><button type="button" class="lb-n" aria-label="Next photo">&#8250;</button>';
     d.body.appendChild(dl);
-    var im=dl.querySelector('img'),cp=dl.querySelector('figcaption'),cur=0;
-    var show=function(i){cur=(i+lbs.length)%lbs.length;var a=lbs[cur];im.src=a.getAttribute('href');im.alt=a.querySelector('img').alt;cp.textContent=a.dataset.cap||''};
+    var im=dl.querySelector('img'),cur=0;
+    var show=function(i){cur=(i+lbs.length)%lbs.length;var a=lbs[cur];im.src=a.getAttribute('href');im.alt=a.querySelector('img').alt};
     lbs.forEach(function(a,i){a.addEventListener('click',function(e){e.preventDefault();show(i);dl.showModal()})});
     dl.querySelector('.lb-x').addEventListener('click',function(){dl.close()});
     dl.querySelector('.lb-p').addEventListener('click',function(){show(cur-1)});
