@@ -104,7 +104,7 @@ section.alt{background:var(--soft)}
 .meta{color:var(--muted)}
 
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:-40px 0 0;padding:0;list-style:none;position:relative;z-index:3}
-.stat{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:20px;box-shadow:0 8px 24px rgba(15,25,19,.06);position:relative;overflow:hidden}
+.stat{background:#fff;border:1px solid #16201a;border-radius:var(--r);padding:20px;box-shadow:0 8px 24px rgba(15,25,19,.06);position:relative;overflow:hidden}
 .stat b{display:block;font-size:2rem;color:var(--green-d);line-height:1.1}
 .stat span{display:block;overflow-wrap:anywhere;color:var(--muted);font-size:.9rem;line-height:1.35;margin-top:4px}
 @media (max-width:900px){.stats{grid-template-columns:repeat(2,1fr)}}
