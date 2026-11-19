@@ -465,7 +465,7 @@ page("teaching.html", "Teaching & Mentoring", "Teaching, mentoring, open-source 
 </div></section>
 <section><div class="wrap">
  <div class="sec-head"><h2>Talks and outreach</h2><a href="gallery.html#talks">All photos <span aria-hidden="true">&rarr;</span></a></div>""" + gallery([
-  ("talk-smart-fert","Giving a talk titled Smart Fertilization: Leveraging Sensor Technology for Sustainable Corn Production","Talk on sensor-based nitrogen"),
+  ("talk-brazil","Presenting on variable-rate nitrogen at a conference in Brazil","Talk at a precision agriculture meeting in Brazil"),
   ("talk-drone-outreach","Drone demonstration table at an outreach event","Drone outreach event"),
  ], "gallery g2") + f"""
 </div></section>
