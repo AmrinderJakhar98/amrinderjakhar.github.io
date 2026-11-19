@@ -575,7 +575,7 @@ page("contact.html", "Contact", "Contact Amrinder Jakhar, Ph.D. candidate in pre
  + f"""<section><div class="wrap">
  <h2 class="sr-only">Contact details</h2>
  <ul class="contact-list">
-  <li><div><b>Email</b><br><a href="mailto:{EMAIL}">{EMAIL}</a></div></li>
+  <li><div><b>Email</b><br><a href="mailto:{EMAIL}">{EMAIL}</a></div></li><li><div><b>Permanent email</b><br><a href="mailto:contact@amrinderjakhar.com">contact@amrinderjakhar.com</a></div></li>
   <li><div><b>Office</b><br>Department of Crop and Soil Sciences<br>University of Georgia, Athens, GA 30602</div></li>
   {contact}
  </ul>
