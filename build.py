@@ -107,7 +107,7 @@ def page(fn, title, desc, body):
 {seo}
 <link rel="icon" href="{P}assets/icons/favicon.ico" sizes="any"><link rel="icon" href="{P}assets/icons/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="{P}assets/icons/apple-touch-icon.png">
-<meta name="theme-color" content="#0f1913">
+<meta name="theme-color" content="#141517">
 <link rel="stylesheet" href="{P}assets/css/style.css">
 <noscript><style>.burger{{display:none}}.nav .wrap{{height:auto;flex-wrap:wrap;padding-top:8px;padding-bottom:8px}}.menu{{display:flex;flex-direction:row;flex-wrap:wrap;position:static;padding:0;box-shadow:none}}.menu a{{border-bottom:0;padding:8px 10px}}.nav{{position:static}}</style></noscript>
 {LD.get(fn, "")}
