@@ -186,7 +186,7 @@ a.card:hover h3{color:var(--green-d)}
 .row .s{grid-column:1/-1;color:var(--muted);font-size:.9rem;max-width:52rem}
 @media (max-width:640px){.row{grid-template-columns:1fr}.row .d{white-space:normal}}
 .chips{display:flex;flex-wrap:wrap;gap:6px}
-.cvsec .chips{margin-top:16px}
+.cvsec .chips,.cvsec>p{margin-top:16px}
 .chips span{background:var(--soft);border:1px solid var(--line);border-radius:8px;padding:3px 10px;font-size:.9rem}
 .pub .yr,.news time,.tl .when,.row .d,.stat b,.theme .num{font-variant-numeric:tabular-nums}
 
