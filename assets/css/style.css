@@ -222,6 +222,58 @@ footer a{color:#d5e0d8}
   .menu{border-bottom:1px solid CanvasText}
 }
 
+/* ---------- visual pass: serif headings, roomier sections, quieter metadata ---------- */
+:root{--serif:"Iowan Old Style","Charter","Bitstream Charter","Sitka Text",Cambria,Georgia,serif}
+h1,h2{font-family:var(--serif);font-weight:600;letter-spacing:-.005em}
+h2{font-size:clamp(1.6rem,2.4vw,2.05rem)}
+section{padding:88px 0}
+.sec-head{margin-bottom:32px}
+.two{gap:64px}
+.hero::before{background:linear-gradient(90deg,rgba(12,22,16,.8) 0,rgba(12,22,16,.62) 50%,rgba(12,22,16,.12) 100%)}
+.stats{gap:0;background:#fff;border:1px solid var(--line);border-radius:var(--r);box-shadow:0 8px 24px rgba(15,25,19,.06);overflow:hidden}
+.stats::before{content:"";position:absolute;inset:0 0 auto 0;height:3px;background:var(--bar);z-index:1}
+.stat{border:0;border-right:1px solid var(--line);border-radius:0;box-shadow:none;padding:24px 22px 20px}
+.stat:last-child{border-right:0}
+.stat::before{display:none}
+.stat b{font:600 2.6rem/1 var(--serif);letter-spacing:-.01em}
+.stat span{font-size:.86rem;margin-top:8px}
+.pub{padding:18px 0;border-bottom-style:solid}
+.pub .yr{font-weight:600;color:var(--muted);font-size:.92rem;padding-top:.12em}
+.pub .t{font-size:1.04rem;line-height:1.4}
+.news li{align-items:baseline;padding:14px 0}
+.news li span{font-size:.95rem;line-height:1.55}
+.news time{font-size:.82rem;letter-spacing:.02em;text-transform:uppercase}
+.cvsec{max-width:880px;margin-bottom:52px}
+.cvsec h2{font-size:1.45rem;border-bottom:1px solid var(--ink);padding-bottom:6px;margin-bottom:8px}
+.band{margin:0 0 16px}
+.band img{display:block;width:100%;height:auto;aspect-ratio:21/9;object-fit:cover;object-position:center 40%;border-radius:var(--r);background:var(--tint)}
+.photos{grid-template-columns:1fr 1fr}
+.photos img{aspect-ratio:16/9}
+@media (min-width:900px){
+  .theme>div:last-child{max-width:none;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);column-gap:56px;align-items:start;grid-template-rows:repeat(4,auto) 1fr}
+  .theme>div>*{grid-column:1}
+  .theme>div>ul:not(.pills){grid-column:2;grid-row:1/span 5;margin:0;padding-top:4px}
+  .theme{padding:40px 0}
+}
+@media (max-width:900px){.stat:nth-child(2n){border-right:0}.stat:nth-child(-n+2){border-bottom:1px solid var(--line)}}
+@media (max-width:820px){
+  .hero::before{background:linear-gradient(180deg,rgba(12,22,16,0) 0,rgba(12,22,16,.12) 38vw,rgba(15,25,19,.8) 64vw,var(--nav) 74vw)}
+  .hero .wrap{gap:18px;padding-top:calc(75vw - 76px);padding-bottom:48px}
+  .portrait{width:112px;padding:4px}
+  .hero .lead{font-size:1.02rem;line-height:1.55}
+  .tags{margin:14px 0 18px}
+}
+@media (max-width:640px){
+  section{padding:52px 0}
+  .btns{display:grid;grid-template-columns:1fr 1fr}
+  .btns .btn{justify-content:center;text-align:center}
+  .btns .btn:first-child{grid-column:1/-1}
+  .hero .btns{max-width:420px}
+  .stat{padding:16px}.stat b{font-size:2rem}
+  .photos{grid-template-columns:1fr 1fr}.photos li:first-child{grid-column:auto}.photos li img{aspect-ratio:4/3!important}
+  .band img{aspect-ratio:16/9}
+}
+
 /* ---------- print (CV and publications as a clean document) ---------- */
 @media print{
   @page{margin:16mm 15mm}
