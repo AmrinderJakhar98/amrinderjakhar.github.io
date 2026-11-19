@@ -33,7 +33,7 @@ ICON = {  # small inline line icons
 ICON = {k: v.replace("<svg ", '<svg aria-hidden="true" focusable="false" ', 1) for k, v in ICON.items()}
 
 NAV = [("index.html", "Home"), ("research.html", "Research"), ("publications.html", "Publications"),
-       ("teaching.html", "Teaching"), ("cv.html", "CV"), ("contact.html", "Contact")]
+       ("teaching.html", "Teaching"), ("gallery.html", "Gallery"), ("cv.html", "CV"), ("contact.html", "Contact")]
 
 import json, csv, re, html as _html, urllib.request, urllib.parse, time
 esc = _html.escape
@@ -107,7 +107,7 @@ def page(fn, title, desc, body):
 {seo}
 <link rel="icon" href="{P}assets/icons/favicon.ico" sizes="any"><link rel="icon" href="{P}assets/icons/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="{P}assets/icons/apple-touch-icon.png">
-<meta name="theme-color" content="#0f1913">
+<meta name="theme-color" content="#141517">
 <link rel="stylesheet" href="{P}assets/css/style.css">
 <noscript><style>.burger{{display:none}}.nav .wrap{{height:auto;flex-wrap:wrap;padding-top:8px;padding-bottom:8px}}.menu{{display:flex;flex-direction:row;flex-wrap:wrap;position:static;padding:0;box-shadow:none}}.menu a{{border-bottom:0;padding:8px 10px}}.nav{{position:static}}</style></noscript>
 {LD.get(fn, "")}
@@ -333,6 +333,28 @@ def iso(d):
 # ---------------------------------------------------------------- pages
 cards = "".join(f'<a class="card reveal" href="research.html#theme-{n}"><div class="icon">{ICON[i]}</div><h3>{h}</h3><p>{d}</p></a>' for n, (i, h, d, _, _) in enumerate(THEMES, 1))
 news = "".join(f'<li><time datetime="{iso(d)}">{d}</time><span>{t}</span></li>' for d, t in NEWS)
+
+# gallery helper: natural-aspect photos in CSS columns, lazy loaded
+ROOT = pathlib.Path(__file__).resolve().parent
+def webp_size(path):
+    """Width and height of a WebP file, read from its header (no Pillow needed in CI)."""
+    b = pathlib.Path(path).read_bytes()[:30]
+    kind = b[12:16]
+    if kind == b"VP8X":
+        return 1 + int.from_bytes(b[24:27], "little"), 1 + int.from_bytes(b[27:30], "little")
+    if kind == b"VP8L":
+        v = int.from_bytes(b[21:25], "little")
+        return (v & 0x3FFF) + 1, ((v >> 14) & 0x3FFF) + 1
+    return int.from_bytes(b[26:28], "little") & 0x3FFF, int.from_bytes(b[28:30], "little") & 0x3FFF
+
+def gallery(items, cls="gallery"):
+    out=[]
+    for f,alt,cap in items:
+        w,h=webp_size(ROOT / f"assets/img/{f}.webp")
+        big = f"assets/img/lg/{f}.webp" if (ROOT / f"assets/img/lg/{f}.webp").exists() else f"assets/img/{f}.webp"
+        out.append(f'<figure><a class="lb" href="{big}"><img src="assets/img/{f}.webp" alt="{alt}" width="{w}" height="{h}" loading="lazy" decoding="async"></a></figure>')
+    return f'<div class="{cls}">' + "".join(out) + "</div>"
+
 sel = "".join(pub_html(p) for p in [p for p in PUBS if kind(p) == "journal"][:3])  # three most recent on the home page
 NPUB = {k: sum(1 for p in PUBS if kind(p) == k) for k in ("journal", "review", "proc", "ext")}
 META_DOI = "https://doi.org/10.1007/s11119-026-10447-1"
@@ -369,6 +391,7 @@ page("index.html", "Home",
   <p>I am looking for positions in precision agriculture and agricultural data science starting in 2027.</p>
  </div>
  <div>
+  <figure class="about-photo"><img src="assets/img/about-drone-corn.webp" alt="Flying a research drone beside a tall corn field" width="1024" height="682" loading="lazy" decoding="async"></figure>
   <h2>News</h2>
   <ul class="news">{news}</ul>
  </div>
@@ -399,6 +422,10 @@ themes = "".join(
 page("research.html", "Research", "Research by Amrinder Jakhar at the University of Georgia on sensor-based nitrogen management, remote sensing, machine learning and water quality.",
  phead("Research", "My Ph.D. is on nitrogen management and crop sensing in Georgia corn. My M.S. was on soil amendments and water quality.")
  + f'<section><div class="wrap">{PHOTOS}{themes}</div></section>'
+ + '<section class="alt"><div class="wrap"><div class="sec-head"><h2>In the field</h2><a href="gallery.html">All photos <span aria-hidden="true">&rarr;</span></a></div>' + gallery([
+  ("res-drone-gnss-base","Drone in flight over young corn with a GNSS base station on a tripod","Drone flight with an RTK base station"),
+  ("res-soil-sensor","Tractor pulling a Veris soil sensor across a field","Mapping soil with a Veris sensor"),
+ ], "gallery g2") + '</div></section>'
  + """<section class="alt"><div class="wrap two">
  <div><h2>Field sites</h2>
  <p>Replicated corn nitrogen trials at UGA research farms in Tifton (Ponder and Rigdon Farms), Midville and Watkinsville (Iron Horse Farm), plus on-farm trials with Georgia growers. M.S. field work in the Mississippi Delta.</p></div>
@@ -436,6 +463,12 @@ page("teaching.html", "Teaching & Mentoring", "Teaching, mentoring, open-source 
   <li><div class="when">2023 &middot; Young Scholars Program</div><h3>High school student</h3><p>Drone imagery processing and analysis; featured in a UGA CAES article.</p></li>
  </ul></div>
 </div></section>
+<section><div class="wrap">
+ <div class="sec-head"><h2>Talks and outreach</h2><a href="gallery.html#talks">All photos <span aria-hidden="true">&rarr;</span></a></div>""" + gallery([
+  ("talk-smart-fert","Giving a talk titled Smart Fertilization: Leveraging Sensor Technology for Sustainable Corn Production","Talk on sensor-based nitrogen"),
+  ("talk-drone-outreach","Drone demonstration table at an outreach event","Drone outreach event"),
+ ], "gallery g2") + f"""
+</div></section>
 <section class="alt"><div class="wrap">
  <h2>Code and tools</h2>
  <div class="grid g3">
@@ -447,6 +480,46 @@ page("teaching.html", "Teaching & Mentoring", "Teaching, mentoring, open-source 
   <div class="card reveal"><h3>Outreach</h3><p>Field-day sensor demos for about 100 growers, consultants, students and faculty, and drone and data science sessions for school students.</p></div>
  </div>
 </div></section>""")
+
+GAL = [
+ ("field", "Field work", "Replicated corn nitrogen trials at UGA research farms in Georgia.", [
+  ("field-whole-900","Oblique drone view over a whole research field of corn plots","The research field from the drone"),
+  ("field-plots","Drone view straight down on rectangular crop plots","Trial plots from above"),
+  ("field-corn-contrast","Tall dark green corn beside shorter, lighter green corn in the next plot","Nitrogen rate differences between plots"),
+  ("home-checking-corn","Checking young corn plants in a research plot","Checking young corn"),
+  ("home-plant-height","Measuring plant height with a ruler in the field","Measuring plant height"),
+  ("res-soil-core","Opening a soil core in a sampling tube","Soil coring"),
+  ("res-pivot-corn","Center pivot irrigation spraying over tall corn","Irrigated corn under a center pivot"),
+  ("res-pivot-field","Center pivot over a large corn field","Research field under pivot irrigation"),
+  ("field-rows","Rows of young corn under a blue sky","Young corn rows"),
+ ]),
+ ("sensing", "Drones and sensing", "Multispectral drone flights, RTK positioning, soil mapping and in-cab variable-rate application.", [
+  ("about-drone-corn","Flying a research drone beside a tall corn field","Flying the drone in corn"),
+  ("home-holding-drone","Holding a multispectral drone in a field","Ready for a flight"),
+  ("res-drone-gnss-base","Drone in flight over young corn with a GNSS base station on a tripod","Drone flight with an RTK base station"),
+  ("res-drone-overhead","Drone hovering above an operator holding a controller","Drone imagery collection"),
+  ("home-drone-base-station","Drone flying over a field next to a ground station","Drone over the field station"),
+  ("res-soil-sensor","Tractor pulling a Veris soil sensor across a field","Mapping soil with a Veris sensor"),
+  ("res-in-cab","Precision guidance displays inside a tractor cab in a corn field","In-cab displays during application"),
+ ]),
+ ("talks", "Talks and awards", "Conference talks and posters on sensor-based nitrogen management.", [
+  ("talk-smart-fert","Giving a talk titled Smart Fertilization: Leveraging Sensor Technology for Sustainable Corn Production","Talk on sensor-based nitrogen"),
+  ("talk-brazil","Presenting on variable-rate nitrogen at a conference in Brazil","Talk at a precision agriculture meeting in Brazil"),
+  ("talk-iipa","Standing beside an Institute for Integrative Precision Agriculture banner","Institute for Integrative Precision Agriculture"),
+ ]),
+ ("outreach", "Outreach", "Field days and drone demonstrations for growers, students and the public.", [
+  ("res-field-day","Explaining sensors and drones to visitors at a field day","Field day sensor demo"),
+  ("talk-drone-outreach","Drone demonstration table at an outreach event","Drone outreach event"),
+ ]),
+ ("people", "Lab and colleagues", "", [
+  ("team-field","Lab group standing together in a young corn field","With colleagues in the field"),
+  ("team-outdoors","Large group of students and colleagues outdoors under trees","Lab and department group"),
+ ]),
+]
+page("gallery.html", "Gallery", "Photos of Amrinder Jakhar's field research, drones and sensors, talks and outreach at the University of Georgia.",
+ phead("Gallery", "Field work, drones and sensors, talks, and the people I work with. Select a photo to see it larger.")
+ + '<section class="gnav-wrap"><div class="wrap"><nav class="gnav" aria-label="Photo groups">' + "".join(f'<a href="#{k}">{t}</a>' for k, t, _, _ in GAL) + '</nav></div></section>'
+ + "".join(f'<section id="{k}"' + (' class="alt"' if i % 2 else '') + f'><div class="wrap"><h2>{t}</h2>' + (f'<p class="meta">{d}</p>' if d else "") + gallery(items) + "</div></section>" for i, (k, t, d, items) in enumerate(GAL)))
 
 CVBTN = '<p><a class="btn btn-dark" href="assets/Amrinder_Jakhar_CV.pdf">Download full CV (PDF)</a></p>' if (OUT / "assets/Amrinder_Jakhar_CV.pdf").exists() else ""
 
