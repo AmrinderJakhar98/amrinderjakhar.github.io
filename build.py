@@ -386,11 +386,11 @@ page("index.html", "Home",
 """)
 
 # field photos (720 px WebP, loaded only when scrolled to)
-PHOTOS = '<ul class="photos">' + "".join(
+PHOTOS = ('<figure class="band"><img src="assets/img/field-whole-1600.webp" alt="Drone view of a whole corn trial: long strips of plots in different shades of green, with trees around the field" width="1600" height="900" loading="lazy" decoding="async"></figure>'
+ + '<ul class="photos">' + "".join(
  f'<li><img src="assets/img/{f}.webp" alt="{a}" width="720" height="540" loading="lazy" decoding="async"></li>' for f, a in [
-  ("field-plots", "Drone view straight down on rectangular crop plots in a research field"),
   ("field-corn-contrast", "Tall dark green corn beside shorter, lighter green corn in the next plot"),
-  ("field-rows", "Rows of young corn in a research field under a blue sky")]) + "</ul>"
+  ("field-rows", "Rows of young corn in a research field under a blue sky")]) + "</ul>")
 themes = "".join(
  f'<div class="theme reveal" id="theme-{n}"><div><div class="icon">{ICON[i]}</div><h2>{h}</h2><p>{d}</p>'
  + '<ul class="pills" aria-label="Topics">' + "".join(f'<li class="pill">{t}</li>' for t in tags) + "</ul>"
