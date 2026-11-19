@@ -498,8 +498,6 @@ GAL = [
   ("res-drone-gnss-base","Drone in flight over young corn with a GNSS base station on a tripod","Drone flight with an RTK base station"),
   ("drone-field-overhead","Research drone hovering above the pilot at the edge of a field","Drone flight over the field"),
   ("drone-soybean","Flying a research drone over a soybean field","Drone flight over soybean"),
-  ("drone-corn-flight","Research drone in flight above the pilot beside tall corn","Drone flight beside corn"),
-  ("drone-corn-controller","Holding the drone controller in a tall corn field","At the controls in corn"),
   ("res-drone-overhead","Drone hovering above an operator holding a controller","Drone imagery collection"),
   ("home-drone-base-station","Drone flying over a field next to a ground station","Drone over the field station"),
   ("res-soil-sensor","Tractor pulling a Veris soil sensor across a field","Mapping soil with a Veris sensor"),
