@@ -352,7 +352,7 @@ def gallery(items, cls="gallery"):
     for f,alt,cap in items:
         w,h=webp_size(ROOT / f"assets/img/{f}.webp")
         big = f"assets/img/lg/{f}.webp" if (ROOT / f"assets/img/lg/{f}.webp").exists() else f"assets/img/{f}.webp"
-        out.append(f'<figure><a class="lb" href="{big}" data-cap="{cap}"><img src="assets/img/{f}.webp" alt="{alt}" width="{w}" height="{h}" loading="lazy" decoding="async"></a><figcaption>{cap}</figcaption></figure>')
+        out.append(f'<figure><a class="lb" href="{big}"><img src="assets/img/{f}.webp" alt="{alt}" width="{w}" height="{h}" loading="lazy" decoding="async"></a></figure>')
     return f'<div class="{cls}">' + "".join(out) + "</div>"
 
 sel = "".join(pub_html(p) for p in [p for p in PUBS if kind(p) == "journal"][:3])  # three most recent on the home page
