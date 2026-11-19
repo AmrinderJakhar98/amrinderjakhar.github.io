@@ -333,7 +333,8 @@ def iso(d):
 # ---------------------------------------------------------------- pages
 cards = "".join(f'<a class="card reveal" href="research.html#theme-{n}"><div class="icon">{ICON[i]}</div><h3>{h}</h3><p>{d}</p></a>' for n, (i, h, d, _, _) in enumerate(THEMES, 1))
 news = "".join(f'<li><time datetime="{iso(d)}">{d}</time><span>{t}</span></li>' for d, t in NEWS)
-sel = "".join(pub_html(p) for p in PUBS if kind(p) == "journal")
+sel = "".join(pub_html(p) for p in [p for p in PUBS if kind(p) == "journal"][:3])  # three most recent on the home page
+NPUB = {k: sum(1 for p in PUBS if kind(p) == k) for k in ("journal", "review", "proc", "ext")}
 META_DOI = "https://doi.org/10.1007/s11119-026-10447-1"
 
 page("index.html", "Home",
@@ -345,7 +346,7 @@ page("index.html", "Home",
   <div class="eyebrow">Crop and Soil Sciences &middot; University of Georgia</div>
   <h1>Amrinder Jakhar</h1>
   <p class="lead">I am a Ph.D. candidate at the University of Georgia. I study in-season nitrogen management in corn using canopy sensors, drone and satellite imagery, and machine learning.</p>
-  <ul class="tags"><li>Ph.D. candidate, Crop and Soil Sciences, UGA</li><li>Remote sensing</li><li>Machine learning</li><li>Water quality</li><li>FAA Part 107 pilot</li></ul>
+  <ul class="tags"><li>Remote sensing</li><li>Machine learning</li><li>Water quality</li><li>FAA Part 107 pilot</li></ul>
   <div class="btns"><a class="btn btn-primary" href="cv.html">View CV</a><a class="btn btn-ghost" href="publications.html">Publications</a><a class="btn btn-ghost" href="contact.html">Get in touch</a></div>
   <p class="mail"><a href="mailto:{EMAIL}">{EMAIL}</a></p>
  </div>
@@ -379,7 +380,7 @@ page("index.html", "Home",
 </div></section>
 
 <section><div class="wrap">
- <div class="sec-head"><h2>Peer-reviewed journal articles</h2><a href="publications.html">Full list <span aria-hidden="true">&rarr;</span></a></div>
+ <div class="sec-head"><h2>Recent journal articles</h2><a href="publications.html">Full list <span aria-hidden="true">&rarr;</span></a></div>
  <ul class="plist">{sel}</ul>
 </div></section>
 """)
@@ -466,6 +467,11 @@ page("cv.html", "CV", "Curriculum vitae of Amrinder Jakhar, Ph.D. candidate in C
   ("Graduate Research Assistant","Crop and Soil Sciences, University of Georgia","2023 &ndash; present","Multi-site-year corn N trials; proximal, UAV and satellite sensing; optimum N rate models; global meta-analysis; collaborative ML and UAV LiDAR studies."),
   ("Graduate Research Assistant","Mississippi State University","2021 &ndash; 2022","Biochar and gypsum effects on soil physical properties and water quality, with lysimeter soil-solution monitoring and IC, Lachat and ICP-OES analysis."),
   ("Intern, Cotton Development Program","Department of Agriculture and Farmers Welfare, Government of Punjab, India","Aug &ndash; Oct 2018","")])}</div>
+ <div class="cvsec"><h2>Publications</h2><p>{NPUB["journal"]} peer-reviewed journal articles, {NPUB["review"]} manuscripts submitted or under review, and {NPUB["proc"]} conference proceedings. The <a href="publications.html">full publication list</a> is on its own page.</p></div>
+ <div class="cvsec"><h2>Teaching and mentoring</h2>{rows([
+  ("Teaching Assistant, CRSS 8030","Data Science and Statistical Programming Applied to Agriculture, University of Georgia","Spring 2025","Held weekly office hours and taught one lecture and lab on gradient boosting with XGBoost and tidymodels."),
+  ("Co-supervisor, visiting graduate researcher","USP / ESALQ, Brazil","2024","Eight-month project on nitrogen rate effects on corn grain quality for dairy nutrition."),
+  ("Mentor, Young Scholars Program","University of Georgia","2023 &ndash; 2024","Two high school students, on drone and satellite imagery for nitrogen management in corn.")])}</div>
  <div class="cvsec"><h2>Selected honors</h2>{rows([
   ("2nd Place, NxS Hackathon (Team Georgia)","Nitrogen Use Efficiency Workshop, Starkville, MS","2026",""),
   ("3rd Place, Poster Contest","Nitrogen Use Efficiency Workshop, Starkville, MS","2026",""),
