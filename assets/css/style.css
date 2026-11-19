@@ -75,6 +75,10 @@ p{margin:0 0 1em}
 .btn-dark{background:var(--nav);color:#fff}
 .btn-dark:hover{background:var(--green-d)}
 .mail{margin:18px 0 0;color:#cdd0d4}
+/* hero: eyebrow, email and main button stay white so the photo, not an accent color, carries the hero */
+.hero .eyebrow,.hero .mail a{color:#fff}
+.hero .btn-primary{background:#fff;color:var(--nav)}
+.hero .btn-primary:hover{background:#e9eaec}
 .mail a,.phead a{color:var(--leaf)}
 .portrait{justify-self:center;width:min(320px,100%);aspect-ratio:1;border-radius:50%;padding:0;
   border:2px solid rgba(255,255,255,.85);box-shadow:0 10px 30px rgba(0,0,0,.35)}
