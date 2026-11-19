@@ -369,7 +369,7 @@ page("index.html", "Home",
   <h1>Amrinder Jakhar</h1>
   <p class="lead">I am a Ph.D. candidate at the University of Georgia. I study in-season nitrogen management in corn using canopy sensors, drone and satellite imagery, and machine learning.</p>
   <ul class="tags"><li>Remote sensing</li><li>Machine learning</li><li>Water quality</li><li>FAA Part 107 pilot</li></ul>
-  <div class="btns"><a class="btn btn-primary" href="cv.html">View CV</a><a class="btn btn-ghost" href="publications.html">Publications</a><a class="btn btn-ghost" href="contact.html">Get in touch</a></div>
+  <div class="btns"><a class="btn btn-ghost" href="cv.html">View CV</a><a class="btn btn-ghost" href="publications.html">Publications</a><a class="btn btn-ghost" href="contact.html">Get in touch</a></div>
   <p class="mail"><a href="mailto:{EMAIL}">{EMAIL}</a></p>
  </div>
  <div class="portrait"><picture><source srcset="assets/img/amrinder-jakhar.webp" type="image/webp"><img src="assets/img/amrinder-jakhar.jpg" alt="Portrait of Amrinder Jakhar" width="320" height="320" fetchpriority="high"></picture></div>
@@ -496,6 +496,10 @@ GAL = [
  ("sensing", "Drones and sensing", "Multispectral drone flights, RTK positioning, soil mapping and in-cab variable-rate application.", [
   ("about-drone-corn","Flying a research drone beside a tall corn field","Flying the drone in corn"),
   ("res-drone-gnss-base","Drone in flight over young corn with a GNSS base station on a tripod","Drone flight with an RTK base station"),
+  ("drone-field-overhead","Research drone hovering above the pilot at the edge of a field","Drone flight over the field"),
+  ("drone-soybean","Flying a research drone over a soybean field","Drone flight over soybean"),
+  ("drone-corn-flight","Research drone in flight above the pilot beside tall corn","Drone flight beside corn"),
+  ("drone-corn-controller","Holding the drone controller in a tall corn field","At the controls in corn"),
   ("res-drone-overhead","Drone hovering above an operator holding a controller","Drone imagery collection"),
   ("home-drone-base-station","Drone flying over a field next to a ground station","Drone over the field station"),
   ("res-soil-sensor","Tractor pulling a Veris soil sensor across a field","Mapping soil with a Veris sensor"),
